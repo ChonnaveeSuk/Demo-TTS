@@ -310,16 +310,5 @@ if st.button("Convert Text to Speech"):
                 )
 
 
-from google.cloud import texttospeech
-
-def get_gcp_voices():
-    client = texttospeech.TextToSpeechClient()
-
-    project_id = "tts-demo-project-451203"  
-    parent = f"projects/{project_id}/locations/global"  
-
-    response = client.list_voices(parent=parent)
-
-    return response.voices
 
 
