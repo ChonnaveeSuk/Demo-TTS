@@ -5,12 +5,11 @@ import boto3
 from google.cloud import texttospeech
 from google.api_core.exceptions import InvalidArgument
 
-# === นำเข้าฟังก์ชันจาก LANGUAGES_ALL.py เพื่อใช้ตอน Refresh ===
+# Import functions from LANGUAGES_ALL.py to use during Refresh.
 from LANGUAGES_ALL import save_gcp_voices_to_json, save_polly_voices_to_json
 
-# --------------------------------------------------
-# 1) โหลดไฟล์ JSON
-# --------------------------------------------------
+# Load JSON file
+
 LANG_DIR = r"C:\Demo_TTS\All_Lang"
 gcp_json = os.path.join(LANG_DIR, "GCP_VOICES_ALL.json")
 polly_json = os.path.join(LANG_DIR, "POLLY_VOICES_ALL.json")
@@ -23,28 +22,21 @@ def load_polly_voices():
     with open(polly_json, "r", encoding="utf-8") as f:
         return json.load(f)
 
-# เก็บใน session_state เพื่อลดการโหลดซ้ำ
 if "GCP_VOICES_ALL" not in st.session_state:
-    # ลองโหลดจาก JSON file ถ้าไม่เจอไฟล์จะ error
     st.session_state.GCP_VOICES_ALL = load_gcp_voices()
-
 if "POLLY_VOICES_ALL" not in st.session_state:
     st.session_state.POLLY_VOICES_ALL = load_polly_voices()
 
-# --------------------------------------------------
-# 2) ส่วนโค้ดพื้นฐาน
-# --------------------------------------------------
+# Basic code 
 OUTPUT_DIR = r"C:\Demo_TTS\audio_File"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 if "ssml_text" not in st.session_state:
     st.session_state.ssml_text = "<speak>Hello!</speak>"
-
 st.title("TTS Demo: Google Cloud TTS & AWS Polly")
 
-# ----- ปุ่ม REFRESH VOICES -----
+# REFRESH VOICES 
 if st.button("Refresh Voices"):
-    # เรียกฟังก์ชัน build + save ใหม่
     try:
         path_gcp = save_gcp_voices_to_json()
         path_polly = save_polly_voices_to_json()
@@ -57,7 +49,6 @@ if st.button("Refresh Voices"):
     except Exception as e:
         st.error(f"Failed to refresh voices: {e}")
 
-# เลือกโหมด (Plain Text หรือ SSML)
 text_mode = st.radio("Select Input Mode:", ("Plain Text", "SSML"))
 
 if text_mode == "SSML":
@@ -68,17 +59,9 @@ if text_mode == "SSML":
 else:
     text_input = st.text_area("Enter Plain Text:", "Hello! This is a Text-to-Speech test.", height=150)
 
-# เลือก Platform
 platform = st.radio("Select the platform:", ("Google Cloud TTS", "AWS Polly"))
-
-# --------------------------------------------------
-# 3) เลือกฟอร์แมตไฟล์ (MP3 / WAV / OGG)
-# --------------------------------------------------
 audio_format = st.selectbox("Select Audio Format:", ["mp3", "wav", "ogg"])
 
-# --------------------------------------------------
-# 4) เลือก Language Code / Voice
-# --------------------------------------------------
 if platform == "Google Cloud TTS":
     gcp_voices_dict = st.session_state.GCP_VOICES_ALL  # ดึงจาก session_state
     gcp_lang_codes = sorted(list(gcp_voices_dict.keys()))
@@ -104,16 +87,7 @@ else:
     else:
         selected_voice = st.selectbox("Select Voice (AWS Polly):", voice_list)
 
-# --------------------------------------------------
-# 5) ฟังก์ชัน Google Cloud TTS
-# --------------------------------------------------
 def gcp_tts(text, voice_name, lang_code, is_ssml=False, file_format="mp3"):
-    """
-    file_format: "mp3", "wav", "ogg"
-    - MP3  -> texttospeech.AudioEncoding.MP3
-    - WAV  -> texttospeech.AudioEncoding.LINEAR16
-    - OGG  -> texttospeech.AudioEncoding.OGG_OPUS
-    """
     if file_format == "mp3":
         audio_encoding = texttospeech.AudioEncoding.MP3
         ext = ".mp3"
@@ -159,17 +133,7 @@ def gcp_tts(text, voice_name, lang_code, is_ssml=False, file_format="mp3"):
         out.write(response.audio_content)
     return output_file
 
-# --------------------------------------------------
-# 6) ฟังก์ชัน AWS Polly
-# --------------------------------------------------
 def aws_polly_tts(text, voice_id, is_ssml=False, file_format="mp3"):
-    """
-    file_format: "mp3", "wav", "ogg"
-    - MP3 -> OutputFormat="mp3"
-    - WAV -> OutputFormat="pcm" (เป็น raw PCM ต้องการ wave header เพิ่มเอง;
-             ที่นี่จะเรียกเป็น .wav ก็ได้ แต่จะไม่ใช่ WAV header สมบูรณ์นัก)
-    - OGG -> OutputFormat="ogg_vorbis"
-    """
     polly_client = boto3.client("polly")
 
     if file_format == "mp3":
@@ -205,9 +169,6 @@ def aws_polly_tts(text, voice_id, is_ssml=False, file_format="mp3"):
 
     return output_file
 
-# --------------------------------------------------
-# 7) ปุ่ม Convert
-# --------------------------------------------------
 if st.button("Convert Text to Speech"):
     if not text_input.strip():
         st.error("Please enter text (or SSML) before converting.")
@@ -234,8 +195,6 @@ if st.button("Convert Text to Speech"):
                 )
 
             if audio_file and os.path.exists(audio_file):
-                # streamlit's st.audio() ตอนนี้รองรับเฉพาะ mp3? 
-                # wav/ogg อาจเปิดฟังได้บ้างไม่ได้บ้าง ขึ้นกับเบราว์เซอร์
                 if audio_format == "mp3":
                     st.audio(audio_file, format="audio/mp3")
                 elif audio_format == "wav":
@@ -248,7 +207,6 @@ if st.button("Convert Text to Speech"):
                 with open(audio_file, "rb") as f:
                     audio_data = f.read()
 
-                # MIME type
                 if audio_format == "mp3":
                     mime_type = "audio/mp3"
                 elif audio_format == "wav":

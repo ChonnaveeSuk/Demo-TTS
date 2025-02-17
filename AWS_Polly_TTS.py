@@ -1,7 +1,7 @@
 import os
 import boto3
 
-def aws_polly_tts(text):  # เพิ่มพารามิเตอร์ text
+def aws_polly_tts(text):  
     output_dir = "C:\\Demo_TTS\\audio_File"
     os.makedirs(output_dir, exist_ok=True)
     output_file = os.path.join(output_dir, "AWS_output.mp3")

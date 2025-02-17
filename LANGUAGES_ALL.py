@@ -7,21 +7,6 @@ OUTPUT_DIR = r"C:\Demo_TTS\All_Lang"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 def build_gcp_voices_dict():
-    """
-    เรียก Google Cloud TTS list_voices()
-    แล้วสร้าง dict โครงสร้าง:
-    {
-      "en-US": {
-        "Female": ["en-US-Wavenet-A", ...],
-        "Male":   ["en-US-Wavenet-C", ...]
-      },
-      "th-TH": {
-        "Female": [...],
-        "Male":   [...]
-      },
-      ...
-    }
-    """
     client = texttospeech.TextToSpeechClient()
     response = client.list_voices()
 
@@ -29,36 +14,17 @@ def build_gcp_voices_dict():
     for voice in response.voices:
         for lang_code in voice.language_codes:
             if lang_code not in voices_dict:
-                voices_dict[lang_code] = {"Female": [], "Male": []}
-
-            # เช็คเพศ
+                voices_dict[lang_code] = {"Female": [], "Male": []}      
             if voice.ssml_gender == texttospeech.SsmlVoiceGender.FEMALE:
                 voices_dict[lang_code]["Female"].append(voice.name)
             elif voice.ssml_gender == texttospeech.SsmlVoiceGender.MALE:
                 voices_dict[lang_code]["Male"].append(voice.name)
             else:
-                # ในกรณี Neutral หรือ Unspecified
-                # ถ้าต้องการรองรับแยกเป็น Neutral ก็สามารถเพิ่ม key ลงไปได้
                 pass
 
     return voices_dict
 
 def build_polly_voices_dict():
-    """
-    เรียก AWS Polly describe_voices()
-    แล้วสร้าง dict โครงสร้างเหมือนกัน:
-    {
-      "en-US": {
-        "Female": ["Joanna", "Kendra", ...],
-        "Male":   ["Matthew", "Justin", ...]
-      },
-      "en-GB": {
-        "Female": [...],
-        "Male":   [...]
-      },
-      ...
-    }
-    """
     polly_client = boto3.client("polly")
     voices_dict = {}
     next_token = None
@@ -71,7 +37,7 @@ def build_polly_voices_dict():
 
         for v in resp["Voices"]:
             lang_code = v["LanguageCode"]
-            gender = v["Gender"]  # "Female" หรือ "Male" หรือบางทีอาจ "Neutral"
+            gender = v["Gender"]  
             voice_name = v["Name"]
 
             if lang_code not in voices_dict:
@@ -82,7 +48,6 @@ def build_polly_voices_dict():
             elif gender == "Male":
                 voices_dict[lang_code]["Male"].append(voice_name)
             else:
-                # Neutral ก็จัดการได้ตามต้องการ
                 pass
 
         if "NextToken" in resp and resp["NextToken"]:

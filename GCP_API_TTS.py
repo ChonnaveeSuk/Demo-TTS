@@ -23,4 +23,4 @@ def gcp_tts(text):  # เพิ่มพารามิเตอร์ text
 
     print(f"Saved output to {output_file}")
 
-gcp_tts("สวัสดีครับ ยินดีต้อนรับสู่ระบบแปลงข้อความเป็นเสียงของ Google Cloud. Hello, welcome to Google Cloud Text-to-Speech system.")
+gcp_tts("สวัสดีค่ะ ยินดีต้อนรับสู่ระบบแปลงข้อความเป็นเสียงของ Google Cloud. Hello, welcome to Google Cloud Text-to-Speech system.")
