@@ -103,7 +103,7 @@ if "POLLY_VOICES_ALL" not in st.session_state:
     except:
         st.session_state.POLLY_VOICES_ALL = {}
 
-st.title("TTS Demo: Google Cloud TTS & AWS Polly (Single File)")
+st.title("TTS Demo: Google Cloud TTS & AWS Polly")
 
 # ปุ่ม Refresh Voices
 if st.button("Refresh Voices"):
@@ -177,7 +177,6 @@ else:
 # ฟังก์ชันสังเคราะห์เสียง Google Cloud TTS
 def gcp_tts(text, voice_name, lang_code, is_ssml=False, file_format="mp3"):
     client = texttospeech.TextToSpeechClient()
-    # Map file_format -> AudioEncoding
     if file_format == "mp3":
         audio_encoding = texttospeech.AudioEncoding.MP3
         ext = ".mp3"
