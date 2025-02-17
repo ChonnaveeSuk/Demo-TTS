@@ -308,3 +308,25 @@ if st.button("Convert Text to Speech"):
                     file_name=os.path.basename(audio_file),
                     mime=mime_type
                 )
+
+def get_gcp_voices():
+    """Fetch available voices from Google Cloud TTS API."""
+    client = texttospeech.TextToSpeechClient()
+    response = client.list_voices()
+
+    voices_dict = {}
+    for voice in response.voices:
+        for lang in voice.language_codes:
+            if lang not in voices_dict:
+                voices_dict[lang] = []
+            voices_dict[lang].append({
+                "name": voice.name,
+                "gender": texttospeech.SsmlVoiceGender(voice.ssml_gender).name,
+                "sample_rate": voice.natural_sample_rate_hertz
+            })
+
+    # Save voices to JSON for later use
+    with open("GCP_VOICES_ALL.json", "w", encoding="utf-8") as f:
+        json.dump(voices_dict, f, ensure_ascii=False, indent=4)
+
+    return voices_dict
