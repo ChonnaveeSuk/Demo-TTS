@@ -1,0 +1,325 @@
+{
+  "fr-BE": {
+    "Female": [
+      "Isabelle"
+    ],
+    "Male": []
+  },
+  "en-US": {
+    "Female": [
+      "Danielle",
+      "Joanna",
+      "Ruth",
+      "Salli",
+      "Kimberly",
+      "Kendra",
+      "Ivy"
+    ],
+    "Male": [
+      "Gregory",
+      "Kevin",
+      "Matthew",
+      "Justin",
+      "Joey",
+      "Stephen"
+    ]
+  },
+  "tr-TR": {
+    "Female": [
+      "Burcu",
+      "Filiz"
+    ],
+    "Male": []
+  },
+  "cs-CZ": {
+    "Female": [
+      "Jitka"
+    ],
+    "Male": []
+  },
+  "de-CH": {
+    "Female": [
+      "Sabrina"
+    ],
+    "Male": []
+  },
+  "es-US": {
+    "Female": [
+      "Lupe",
+      "Penélope"
+    ],
+    "Male": [
+      "Miguel",
+      "Pedro"
+    ]
+  },
+  "en-SG": {
+    "Female": [
+      "Jasmine"
+    ],
+    "Male": []
+  },
+  "sv-SE": {
+    "Female": [
+      "Elin",
+      "Astrid"
+    ],
+    "Male": []
+  },
+  "ru-RU": {
+    "Female": [
+      "Tatyana"
+    ],
+    "Male": [
+      "Maxim"
+    ]
+  },
+  "ro-RO": {
+    "Female": [
+      "Carmen"
+    ],
+    "Male": []
+  },
+  "pt-PT": {
+    "Female": [
+      "Inês"
+    ],
+    "Male": [
+      "Cristiano"
+    ]
+  },
+  "pt-BR": {
+    "Female": [
+      "Vitória",
+      "Camila"
+    ],
+    "Male": [
+      "Ricardo",
+      "Thiago"
+    ]
+  },
+  "pl-PL": {
+    "Female": [
+      "Maja",
+      "Ewa",
+      "Ola"
+    ],
+    "Male": [
+      "Jan",
+      "Jacek"
+    ]
+  },
+  "nl-BE": {
+    "Female": [
+      "Lisa"
+    ],
+    "Male": []
+  },
+  "nl-NL": {
+    "Female": [
+      "Lotte",
+      "Laura"
+    ],
+    "Male": [
+      "Ruben"
+    ]
+  },
+  "nb-NO": {
+    "Female": [
+      "Ida",
+      "Liv"
+    ],
+    "Male": []
+  },
+  "ko-KR": {
+    "Female": [
+      "Seoyeon"
+    ],
+    "Male": []
+  },
+  "ja-JP": {
+    "Female": [
+      "Kazuha",
+      "Tomoko",
+      "Mizuki"
+    ],
+    "Male": [
+      "Takumi"
+    ]
+  },
+  "it-IT": {
+    "Female": [
+      "Bianca",
+      "Carla"
+    ],
+    "Male": [
+      "Giorgio",
+      "Adriano"
+    ]
+  },
+  "is-IS": {
+    "Female": [
+      "Dóra"
+    ],
+    "Male": [
+      "Karl"
+    ]
+  },
+  "fr-FR": {
+    "Female": [
+      "Léa",
+      "Céline"
+    ],
+    "Male": [
+      "Mathieu",
+      "Rémi"
+    ]
+  },
+  "fr-CA": {
+    "Female": [
+      "Chantal",
+      "Gabrielle"
+    ],
+    "Male": [
+      "Liam"
+    ]
+  },
+  "es-MX": {
+    "Female": [
+      "Mia"
+    ],
+    "Male": [
+      "Andrés"
+    ]
+  },
+  "es-ES": {
+    "Female": [
+      "Lucia",
+      "Conchita"
+    ],
+    "Male": [
+      "Enrique",
+      "Sergio"
+    ]
+  },
+  "en-GB-WLS": {
+    "Female": [],
+    "Male": [
+      "Geraint"
+    ]
+  },
+  "en-NZ": {
+    "Female": [
+      "Aria"
+    ],
+    "Male": []
+  },
+  "en-ZA": {
+    "Female": [
+      "Ayanda"
+    ],
+    "Male": []
+  },
+  "en-IN": {
+    "Female": [
+      "Raveena",
+      "Aditi",
+      "Kajal"
+    ],
+    "Male": []
+  },
+  "en-GB": {
+    "Female": [
+      "Emma",
+      "Amy"
+    ],
+    "Male": [
+      "Brian",
+      "Arthur"
+    ]
+  },
+  "en-AU": {
+    "Female": [
+      "Nicole",
+      "Olivia"
+    ],
+    "Male": [
+      "Russell"
+    ]
+  },
+  "de-DE": {
+    "Female": [
+      "Vicki",
+      "Marlene"
+    ],
+    "Male": [
+      "Hans",
+      "Daniel"
+    ]
+  },
+  "da-DK": {
+    "Female": [
+      "Naja",
+      "Sofie"
+    ],
+    "Male": [
+      "Mads"
+    ]
+  },
+  "cy-GB": {
+    "Female": [
+      "Gwyneth"
+    ],
+    "Male": []
+  },
+  "cmn-CN": {
+    "Female": [
+      "Zhiyu"
+    ],
+    "Male": []
+  },
+  "arb": {
+    "Female": [
+      "Zeina"
+    ],
+    "Male": []
+  },
+  "ar-AE": {
+    "Female": [
+      "Hala"
+    ],
+    "Male": [
+      "Zayd"
+    ]
+  },
+  "ca-ES": {
+    "Female": [
+      "Arlet"
+    ],
+    "Male": []
+  },
+  "de-AT": {
+    "Female": [
+      "Hannah"
+    ],
+    "Male": []
+  },
+  "yue-CN": {
+    "Female": [
+      "Hiujin"
+    ],
+    "Male": []
+  },
+  "fi-FI": {
+    "Female": [
+      "Suvi"
+    ],
+    "Male": []
+  },
+  "en-IE": {
+    "Female": [
+      "Niamh"
+    ],
+    "Male": []
+  }
+}
